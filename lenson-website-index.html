@@ -1,0 +1,1119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Lenson Li｜李扬个人品牌工作室</title>
+<meta name="description" content="Lenson Li 李扬的个人品牌展示站：品牌项目、AI Agent 实验、互动产品和转型中的个人作品系统。" />
+<style>
+:root {
+  --bg:#222627; --bg2:#1a1e1f; --bg3:#2d3233; --ink:#f4f4f2; --muted:#8B9594; --muted2:#888C95;
+  --line:rgba(255,255,255,.08); --yellow:#FEE935; --orange:#ED8F19;
+  --shadow:0 24px 70px rgba(0,0,0,.50); --shadow2:0 34px 100px rgba(0,0,0,.62); --radius:34px;
+  --ease-out:cubic-bezier(.22,1,.36,1); --ease-spring:cubic-bezier(.34,1.56,.64,1);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { height:100%; }
+body {
+  margin:0; color:var(--ink); overflow:hidden;
+  background:
+    radial-gradient(ellipse at 72% 12%, rgba(254,233,53,.07), transparent 30%),
+    radial-gradient(ellipse at 20% 75%, rgba(237,143,25,.06), transparent 32%),
+    linear-gradient(180deg,#222627 0%,#1c2021 50%,#161a1b 100%);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+body::before {
+  content:""; position:fixed; inset:0; pointer-events:none; opacity:.10;
+  background:linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px),
+             linear-gradient(180deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:58px 58px;
+}
+a { color:inherit; text-decoration:none; }
+button { font-family:inherit; }
+
+/* ===== Nav ===== */
+.nav {
+  position:fixed; top:0; left:0; right:0; height:54px; z-index:80;
+  backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+  background:rgba(34,38,39,.78); border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-inner {
+  max-width:1180px; margin:0 auto; padding:0 22px; height:54px;
+  display:flex; align-items:center; justify-content:space-between; color:rgba(244,244,242,.72); font-size:13px;
+}
+.brand { color:var(--ink); font-weight:700; letter-spacing:.04em; font-size:14px; }
+.nav-links { display:flex; gap:18px; }
+.nav-links button {
+  border:0; background:transparent; color:rgba(244,244,242,.72); cursor:pointer;
+  font-size:13px; padding:4px 0; transition:color .2s ease; position:relative;
+}
+.nav-links button::after {
+  content:""; position:absolute; bottom:0; left:0; width:0; height:1.5px;
+  background:var(--yellow); transition:width .25s var(--ease-out);
+}
+.nav-links button:hover, .nav-links button.active { color:var(--yellow); }
+.nav-links button.active::after { width:100%; }
+
+/* Mobile hamburger */
+.nav-toggle {
+  display:none; width:36px; height:36px; border:0; background:transparent;
+  cursor:pointer; color:var(--ink); font-size:22px;
+}
+.mobile-menu {
+  display:none; position:fixed; top:54px; left:0; right:0; bottom:0; z-index:79;
+  background:rgba(34,38,39,.94); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+  flex-direction:column; align-items:center; justify-content:center; gap:24px;
+}
+.mobile-menu.active { display:flex; }
+.mobile-menu button {
+  border:0; background:transparent; color:var(--ink); font-size:22px;
+  padding:12px 24px; cursor:pointer; letter-spacing:.02em; transition:color .2s ease;
+}
+.mobile-menu button:hover { color:var(--yellow); }
+
+/* ===== Deck ===== */
+.deck { position:relative; width:100vw; height:100vh; overflow:hidden; }
+.page {
+  position:absolute; inset:0; opacity:0; transform:translateY(48px) scale(.98);
+  pointer-events:none;
+  transition:opacity .58s var(--ease-out), transform .58s var(--ease-out);
+  display:flex; align-items:center; padding:78px 0 34px;
+}
+.page.active { opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+.page.exit-up { opacity:0; transform:translateY(-48px) scale(.98); }
+.wrap { width:min(1180px,calc(100% - 44px)); margin:0 auto; }
+
+/* ===== Staggered entrance ===== */
+.page .stagger {
+  opacity:0; transform:translateY(22px);
+  transition:opacity .48s var(--ease-out), transform .48s var(--ease-out);
+}
+.page.active .stagger { opacity:1; transform:translateY(0); }
+.page.active .stagger:nth-child(1) { transition-delay:.06s; }
+.page.active .stagger:nth-child(2) { transition-delay:.12s; }
+.page.active .stagger:nth-child(3) { transition-delay:.18s; }
+.page.active .stagger:nth-child(4) { transition-delay:.24s; }
+.page.active .stagger:nth-child(5) { transition-delay:.30s; }
+.page.active .stagger:nth-child(6) { transition-delay:.36s; }
+.page.active .stagger:nth-child(7) { transition-delay:.42s; }
+
+/* ===== Typography ===== */
+.kicker {
+  color:var(--yellow); font-size:15px; font-weight:800;
+  letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px;
+}
+h1,h2,h3,p { margin-top:0; }
+h1 {
+  max-width:980px; margin-bottom:0; color:var(--ink);
+  font-size:clamp(68px,13vw,184px); line-height:.86;
+  letter-spacing:-.078em; font-weight:720;
+}
+h1 span { display:block; color:var(--muted); font-weight:520; }
+h2 { margin-bottom:0; font-size:clamp(42px,5.8vw,88px); line-height:.98; letter-spacing:-.07em; font-weight:760; }
+h3 { font-size:30px; line-height:1.06; letter-spacing:-.052em; }
+.lead {
+  max-width:720px; color:var(--muted); font-size:clamp(21px,2.4vw,30px);
+  line-height:1.38; letter-spacing:-.035em;
+}
+.lead b { color:var(--yellow); }
+.desc { max-width:680px; color:var(--muted); font-size:19px; line-height:1.52; letter-spacing:-.025em; }
+
+/* ===== Buttons ===== */
+.actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+.pill {
+  border:1px solid rgba(255,255,255,.10); border-radius:999px; padding:12px 20px;
+  background:#2d3233; color:var(--ink); font-size:16px; cursor:pointer;
+  transition:all .25s var(--ease-out);
+}
+.pill.primary { background:var(--yellow); border-color:var(--yellow); color:#111314; font-weight:750; }
+.pill:hover { transform:translateY(-2px); filter:brightness(1.05); box-shadow:0 15px 40px rgba(0,0,0,.28); }
+.pill:active { transform:translateY(0) scale(.97); }
+
+/* ===== Page Grid ===== */
+.page-grid {
+  display:grid; grid-template-columns:.82fr 1.18fr; gap:44px;
+  align-items:start; margin-top:36px; padding-top:28px; border-top:1px solid var(--line);
+}
+.identity { color:rgba(244,244,242,.88); font-size:24px; line-height:1.25; letter-spacing:-.035em; font-weight:650; }
+.identity small { display:block; margin-top:12px; color:var(--muted); font-size:15px; font-weight:500; letter-spacing:.04em; }
+
+/* ===== Cards ===== */
+.card,.project-card,.lab-card,.time-card,.contact-card {
+  border:1px solid var(--line); border-radius:var(--radius);
+  background:linear-gradient(145deg,#2a2f30 0%,#1e2223 100%); box-shadow:var(--shadow);
+}
+.card,.project-card,.lab-card,.time-card {
+  transition:transform .3s var(--ease-out), border-color .3s ease, box-shadow .3s ease;
+}
+.card:hover,.project-card:hover,.lab-card:hover,.time-card:hover {
+  transform:translateY(-5px); border-color:rgba(254,233,53,.25); box-shadow:var(--shadow2);
+}
+
+/* ===== Method Page ===== */
+.method-layout { display:grid; grid-template-columns:1.05fr .95fr; gap:18px; margin-top:24px; }
+.method-main {
+  min-height:510px; padding:38px; position:relative; overflow:hidden;
+  background:radial-gradient(circle at 84% 82%,rgba(254,233,53,.14),transparent 30%),
+             radial-gradient(circle at 20% 90%,rgba(237,143,25,.12),transparent 28%),
+             linear-gradient(145deg,#2d3233 0%,#1e2223 100%);
+}
+.method-main::after {
+  content:""; position:absolute; right:-100px; bottom:-130px; width:330px; height:330px; border-radius:50%;
+  background:radial-gradient(circle,rgba(237,143,25,.28),transparent 68%);
+  animation:pulse-glow 4s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%,100% { opacity:.6; transform:scale(1); }
+  50% { opacity:1; transform:scale(1.08); }
+}
+.method-main h3 { max-width:670px; font-size:clamp(38px,4.5vw,70px); line-height:1.02; letter-spacing:-.065em; }
+.method-main p { max-width:650px; color:var(--muted); font-size:21px; line-height:1.45; }
+.method-stack { display:grid; gap:18px; }
+.method-mini { min-height:156px; padding:26px; }
+.method-mini b,.time-card b { display:block; margin-bottom:12px; color:var(--yellow); font-size:15px; }
+.method-mini h3 { margin-bottom:10px; }
+.method-mini p,.project-card p,.lab-card p,.time-card p,.contact-card p,.drawer-body p,.drawer-body li {
+  color:var(--muted); line-height:1.52;
+}
+
+/* ===== Icon strip ===== */
+.icon-strip { display:flex; gap:24px; align-items:center; margin-top:28px; color:var(--yellow); }
+.icon-mark {
+  width:42px; height:42px; border:1px solid rgba(254,233,53,.38); border-radius:50%;
+  display:grid; place-items:center; background:rgba(255,255,255,.035);
+  box-shadow:inset 0 0 20px rgba(254,233,53,.05);
+  transition:transform .3s var(--ease-spring), box-shadow .3s ease;
+}
+.icon-mark:hover { transform:scale(1.15); box-shadow:0 0 20px rgba(254,233,53,.2); }
+
+/* ===== Projects ===== */
+.projects-head { display:flex; align-items:flex-end; justify-content:space-between; gap:22px; margin-bottom:22px; }
+.scroll-controls { display:flex; gap:8px; }
+.arrow {
+  width:40px; height:40px; border:1px solid rgba(255,255,255,.1); border-radius:50%;
+  background:#2d3233; color:var(--ink); cursor:pointer; font-size:21px; transition:all .2s ease;
+}
+.arrow:hover { background:var(--yellow); color:#111314; }
+.rail {
+  display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding:6px 0 18px;
+  scrollbar-width:thin; scrollbar-color:#596163 transparent;
+}
+.rail::-webkit-scrollbar { height:8px; }
+.rail::-webkit-scrollbar-thumb { background:#596163; border-radius:99px; }
+.project-card {
+  flex:0 0 min(420px,84vw); min-height:460px; padding:28px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  cursor:pointer; scroll-snap-align:start; position:relative; overflow:hidden;
+}
+.project-card.feature {
+  flex-basis:min(560px,90vw);
+  background:radial-gradient(circle at 78% 88%,rgba(254,233,53,.18),transparent 28%),
+             radial-gradient(circle at 30% 20%,rgba(237,143,25,.10),transparent 26%),
+             linear-gradient(145deg,#2d3233 0%,#1e2223 100%);
+}
+.project-card::before {
+  content:""; position:absolute; inset:0; border-radius:var(--radius);
+  background:linear-gradient(135deg, rgba(254,233,53,.0), rgba(254,233,53,.12), rgba(237,143,25,.08), transparent);
+  opacity:0; transition:opacity .3s ease; pointer-events:none;
+}
+.project-card:hover::before { opacity:1; }
+.chip {
+  display:inline-flex; width:max-content; margin-bottom:14px; padding:7px 11px; border-radius:999px;
+  background:rgba(255,255,255,.08); color:var(--muted); font-size:12px; font-weight:700;
+}
+.chip.hot { background:rgba(254,233,53,.14); color:var(--yellow); }
+.project-card h3 { margin-bottom:0; font-size:clamp(30px,3.1vw,46px); line-height:1.03; letter-spacing:-.06em; }
+.meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+.meta span,.status {
+  padding:7px 10px; border-radius:999px; background:rgba(255,255,255,.07);
+  color:var(--muted2); font-size:12px; font-weight:650;
+}
+.mini-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.mini { padding:14px; border:1px solid rgba(255,255,255,.07); border-radius:18px; background:rgba(255,255,255,.055); }
+.mini b { display:block; margin-bottom:6px; color:var(--ink); font-size:13px; }
+.mini p { margin-bottom:0; color:var(--muted); font-size:13px; line-height:1.45; }
+.corner-plus {
+  position:absolute; right:24px; bottom:24px; width:34px; height:34px; border-radius:50%;
+  background:var(--yellow); color:#111314; display:grid; place-items:center;
+  font-weight:900; font-size:20px; box-shadow:0 0 26px rgba(254,233,53,.28);
+  transition:transform .3s var(--ease-spring), box-shadow .3s ease;
+}
+.project-card:hover .corner-plus {
+  transform:scale(1.15) rotate(90deg); box-shadow:0 0 36px rgba(254,233,53,.45);
+}
+
+/* ===== Lab ===== */
+.lab-layout { display:grid; grid-template-columns:1.04fr .96fr; gap:22px; margin-top:24px; }
+.lab-card {
+  min-height:540px; padding:34px; position:relative; overflow:hidden;
+  background:radial-gradient(circle at 82% 84%,rgba(254,233,53,.10),transparent 28%),
+             radial-gradient(circle at 15% 75%,rgba(237,143,25,.10),transparent 26%),
+             linear-gradient(145deg,#2a2f30 0%,#1e2223 100%);
+}
+.lab-card h3 { font-size:clamp(36px,4.5vw,68px); line-height:.98; letter-spacing:-.065em; }
+.status-row { display:flex; flex-wrap:wrap; gap:10px; margin:22px 0; }
+.agent-list { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px; }
+.agent-item {
+  padding:14px; border:1px solid rgba(255,255,255,.08); border-radius:18px;
+  background:rgba(255,255,255,.055); transition:border-color .2s ease, transform .2s ease;
+}
+.agent-item:hover { border-color:rgba(254,233,53,.3); transform:translateY(-2px); }
+.agent-item b { display:block; margin-bottom:6px; color:var(--yellow); font-size:13px; }
+.agent-item span { color:var(--muted); font-size:13px; line-height:1.45; }
+.product-shot {
+  min-height:540px; padding:18px; display:flex; align-items:center;
+  justify-content:center; overflow:hidden;
+}
+.lab-native-card {
+  align-items:stretch; justify-content:space-between; flex-direction:column; padding:34px;
+  background:
+    radial-gradient(circle at 74% 18%, rgba(254,233,53,.12), transparent 28%),
+    radial-gradient(circle at 14% 86%, rgba(237,143,25,.14), transparent 30%),
+    linear-gradient(145deg,#2a2f30 0%,#1e2223 100%);
+}
+.lab-native-card h3 { margin-top:14px; font-size:clamp(34px,4vw,62px); line-height:1; letter-spacing:-.065em; }
+.lab-native-card p { color:var(--muted); font-size:18px; line-height:1.55; }
+.native-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; position:relative; z-index:1; }
+.native-item {
+  min-height:118px; border:1px solid rgba(255,255,255,.08); border-radius:22px;
+  background:rgba(255,255,255,.055); padding:18px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  transition:border-color .25s ease, transform .25s var(--ease-out);
+}
+.native-item:hover { border-color:rgba(254,233,53,.35); transform:translateY(-3px); }
+.native-item b { color:var(--yellow); font-size:24px; letter-spacing:-.04em; }
+.native-item span { color:var(--ink); font-size:18px; font-weight:650; }
+
+/* ===== Agent Flow ===== */
+.agent-flow-board {
+  margin-top:20px; padding:20px; border:1px solid rgba(255,255,255,.08);
+  border-radius:24px; background:rgba(255,255,255,.04);
+}
+.agent-flow-line {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:14px; position:relative;
+}
+.agent-flow-line::before {
+  content:""; position:absolute; left:8%; right:8%; top:34px; height:2px;
+  background:linear-gradient(90deg,transparent,var(--yellow),transparent); opacity:.55;
+}
+.agent-flow-line::after {
+  content:""; position:absolute; left:8%; top:34px; width:0; height:2px;
+  background:var(--yellow); opacity:.8; z-index:1;
+  animation:flow-line 2.5s ease-in-out infinite;
+}
+@keyframes flow-line {
+  0% { width:0; opacity:.8; }
+  50% { width:84%; opacity:.8; }
+  100% { width:84%; opacity:0; }
+}
+.agent-node { position:relative; z-index:2; text-align:center; }
+.agent-node .circle {
+  width:68px; height:68px; margin:0 auto 10px; border-radius:50%;
+  border:1px solid rgba(254,233,53,.55);
+  background:radial-gradient(circle, rgba(254,233,53,.16), rgba(255,255,255,.04));
+  display:grid; place-items:center; color:var(--yellow); font-size:22px;
+  box-shadow:0 0 28px rgba(254,233,53,.12);
+  transition:transform .3s var(--ease-spring), box-shadow .3s ease;
+}
+.agent-node:hover .circle { transform:scale(1.12); box-shadow:0 0 40px rgba(254,233,53,.3); }
+.agent-node b { display:block; color:var(--ink); font-size:13px; line-height:1.3; }
+.agent-node span { display:block; margin-top:5px; color:var(--muted); font-size:12px; }
+
+/* ===== Timeline ===== */
+.timeline { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:24px; }
+.time-card { min-height:210px; padding:26px; position:relative; overflow:hidden; }
+.time-card::before {
+  content:""; position:absolute; top:0; left:26px; right:26px; height:3px;
+  border-radius:0 0 4px 4px;
+  background:linear-gradient(90deg,var(--orange),var(--yellow));
+  opacity:0; transition:opacity .3s ease;
+}
+.time-card:hover::before { opacity:1; }
+.time-card .company-desc { margin-top:8px; color:var(--muted); font-size:13px; line-height:1.45; }
+
+/* ===== Contact ===== */
+.contact-card { padding:46px; display:grid; grid-template-columns:1.05fr .95fr; gap:30px; align-items:center; }
+.contact-card h2 { font-size:clamp(42px,5.6vw,82px); }
+.contact-list { display:grid; gap:12px; color:var(--muted2); }
+.contact-list b { color:var(--ink); }
+.contact-list a { transition:color .2s ease; }
+.contact-list a:hover { color:var(--yellow); }
+.qr {
+  min-height:250px; border:1px dashed rgba(255,255,255,.16); border-radius:30px;
+  background:#1c2021; display:grid; place-items:center; color:var(--muted); font-size:15px;
+}
+
+/* ===== Progress & Controls ===== */
+.progress {
+  position:fixed; left:22px; bottom:20px; z-index:90;
+  display:flex; align-items:center; gap:12px; color:var(--muted); font-size:13px;
+}
+.progress-bar { width:150px; height:2px; overflow:hidden; border-radius:999px; background:rgba(255,255,255,.16); }
+.progress-fill { height:100%; width:0; background:var(--yellow); transition:width .4s var(--ease-out); }
+.deck-controls { position:fixed; right:22px; bottom:18px; z-index:90; display:flex; gap:10px; }
+.control {
+  width:44px; height:44px; border:1px solid rgba(255,255,255,.12); border-radius:50%;
+  background:#2d3233; color:var(--ink); cursor:pointer; font-size:20px; transition:all .2s ease;
+}
+.control:hover { background:var(--yellow); color:#111314; }
+.dots { position:fixed; top:50%; right:18px; z-index:70; display:grid; gap:11px; transform:translateY(-50%); }
+.dot {
+  width:8px; height:8px; border:0; border-radius:50%; background:#5a6061;
+  cursor:pointer; transition:all .25s var(--ease-spring);
+}
+.dot.active { background:var(--yellow); transform:scale(1.6); box-shadow:0 0 0 6px rgba(254,233,53,.12); }
+
+/* ===== Bottom Pager ===== */
+.bottom-pager {
+  position:fixed; left:50%; bottom:18px; transform:translateX(-50%); z-index:91;
+  display:flex; align-items:center; gap:14px; padding:10px 16px; border-radius:999px;
+  background:rgba(34,38,39,.82); border:1px solid rgba(255,255,255,.10);
+  backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 18px 50px rgba(0,0,0,.30);
+}
+.pager-label { color:var(--muted2); font-size:13px; }
+.pager-dot {
+  width:9px; height:9px; border-radius:50%; background:#5a6061; border:0;
+  cursor:pointer; transition:all .3s var(--ease-out);
+}
+.pager-dot.active {
+  width:32px; border-radius:999px; background:var(--yellow);
+  box-shadow:0 0 20px rgba(254,233,53,.34);
+}
+
+/* ===== Drawer (Enhanced) ===== */
+.drawer { position:fixed; inset:0; z-index:120; display:none; }
+.drawer.active { display:block; }
+.drawer-bg {
+  position:absolute; inset:0; background:rgba(0,0,0,.55);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  animation:fade-in .2s ease;
+}
+@keyframes fade-in { from { opacity:0; } to { opacity:1; } }
+.drawer-panel {
+  position:absolute; top:0; right:0; bottom:0; width:min(640px,100%);
+  padding:0; overflow:auto;
+  background:#1e2223; border-left:1px solid rgba(255,255,255,.08);
+  box-shadow:-20px 0 70px rgba(0,0,0,.38);
+  animation:drawer-slide .32s var(--ease-out);
+}
+@keyframes drawer-slide { from { transform:translateX(100%); } to { transform:translateX(0); } }
+.drawer-header {
+  position:sticky; top:0; z-index:5; padding:28px 36px 20px;
+  background:linear-gradient(180deg,#1e2223 70%,transparent);
+}
+.drawer-head { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; }
+.close {
+  width:38px; height:38px; border:1px solid rgba(255,255,255,.1); border-radius:50%;
+  background:#2d3233; color:var(--ink); cursor:pointer; font-size:22px;
+  flex-shrink:0; transition:all .2s ease;
+}
+.close:hover { background:var(--yellow); color:#111314; }
+.drawer-body { padding:0 36px 36px; }
+.drawer-body h2 { margin:0 0 16px; font-size:clamp(32px,5vw,46px); line-height:1.04; letter-spacing:-.055em; }
+.drawer-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.drawer-section { margin-top:28px; padding-top:24px; border-top:1px solid var(--line); }
+.drawer-section:first-of-type { border-top:0; margin-top:16px; }
+.drawer-section-label {
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--yellow); font-size:13px; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px;
+}
+.drawer-section-label::before {
+  content:""; display:block; width:16px; height:2px; background:var(--yellow); border-radius:2px;
+}
+.drawer-proof-list { list-style:none; padding:0; display:grid; gap:8px; }
+.drawer-proof-list li {
+  padding:10px 14px; border:1px solid rgba(255,255,255,.08); border-radius:14px;
+  background:rgba(255,255,255,.04); color:var(--muted); font-size:14px; line-height:1.45;
+  display:flex; align-items:center; gap:10px;
+}
+.drawer-proof-list li::before {
+  content:""; display:block; width:6px; height:6px; border-radius:50%;
+  background:var(--yellow); flex-shrink:0;
+}
+.drawer-data-box {
+  margin-top:8px; padding:18px; border-radius:18px;
+  background:linear-gradient(135deg,rgba(254,233,53,.05),rgba(237,143,25,.05));
+  border:1px solid rgba(254,233,53,.12);
+}
+.drawer-data-box p { color:var(--ink); font-size:15px; line-height:1.55; }
+.drawer-image-placeholder {
+  margin-top:20px; min-height:200px; border-radius:22px;
+  border:1px dashed rgba(255,255,255,.14); background:rgba(255,255,255,.03);
+  display:grid; place-items:center; color:var(--muted); font-size:14px;
+}
+
+/* ===== Signature ===== */
+.signature {
+  font-family:"Brush Script MT","Snell Roundhand",cursive;
+  color:var(--yellow); font-size:clamp(34px,4vw,62px); font-weight:400; line-height:1;
+  transform:rotate(-6deg); display:inline-block; margin-bottom:10px;
+  filter:drop-shadow(0 0 18px rgba(254,233,53,.14)) drop-shadow(0 0 40px rgba(237,143,25,.10));
+  opacity:0; animation:sig-in .8s .3s var(--ease-out) forwards;
+}
+@keyframes sig-in {
+  from { opacity:0; transform:rotate(-6deg) translateY(14px); }
+  to { opacity:1; transform:rotate(-6deg) translateY(0); }
+}
+
+/* ===== Portrait Stage (breathe) ===== */
+.portrait-stage {
+  min-height:360px; position:relative; overflow:hidden;
+  border:1px solid rgba(255,255,255,.10); border-radius:var(--radius);
+  background:
+    radial-gradient(circle at 65% 42%, rgba(254,233,53,.14), transparent 20%),
+    radial-gradient(circle at 72% 70%, rgba(237,143,25,.12), transparent 22%),
+    linear-gradient(145deg,#2a2f30 0%,#181c1d 100%);
+  box-shadow:var(--shadow);
+}
+.portrait-stage::before {
+  content:""; position:absolute; right:15%; top:17%; width:180px; height:180px;
+  border-radius:50%; background:var(--yellow); opacity:.82; filter:blur(.2px);
+  box-shadow:0 0 60px rgba(254,233,53,.22);
+  animation:breathe 4s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%,100% { transform:scale(1); box-shadow:0 0 60px rgba(254,233,53,.22); }
+  50% { transform:scale(1.06); box-shadow:0 0 80px rgba(254,233,53,.35); }
+}
+.portrait-stage::after {
+  content:""; position:absolute; right:20%; bottom:10%; width:170px; height:260px;
+  background:
+    radial-gradient(circle at 54% 12%, #050707 0 25%, transparent 26%),
+    linear-gradient(120deg, transparent 0 28%, #050707 29% 70%, transparent 71%);
+  border-radius:46% 44% 28% 24%; opacity:.92;
+  filter:drop-shadow(0 18px 38px rgba(0,0,0,.55));
+}
+.portrait-caption { position:absolute; left:28px; bottom:28px; z-index:2; }
+.portrait-caption b { display:block; font-size:30px; letter-spacing:-.04em; }
+.portrait-caption span { display:block; margin-top:8px; color:var(--muted); line-height:1.45; }
+
+/* ===== Floating Board (animated cards) ===== */
+.floating-board {
+  min-height:360px; padding:22px; position:relative; overflow:hidden;
+  border:1px solid rgba(255,255,255,.10); border-radius:var(--radius);
+  background:
+    radial-gradient(circle at 84% 20%, rgba(254,233,53,.08), transparent 20%),
+    linear-gradient(145deg,#2a2f30 0%,#1e2223 100%);
+  box-shadow:var(--shadow);
+}
+.float-card {
+  position:absolute; width:170px; min-height:96px; padding:14px;
+  border:1px solid rgba(255,255,255,.13); border-radius:18px;
+  background:rgba(20,23,24,.72); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 18px 50px rgba(0,0,0,.32);
+  transition:box-shadow .3s ease;
+}
+.float-card:hover { box-shadow:0 24px 60px rgba(0,0,0,.45); }
+.float-card b { color:var(--ink); font-size:14px; }
+.float-card span { display:block; margin-top:8px; color:var(--yellow); font-size:12px; }
+.float-card:nth-child(1) { left:32px; top:32px; transform:rotate(-3deg); animation:float-a 5s ease-in-out infinite; }
+.float-card:nth-child(2) { right:38px; top:56px; transform:rotate(3deg); animation:float-b 5.5s ease-in-out infinite; }
+.float-card:nth-child(3) { left:66px; bottom:46px; transform:rotate(2deg); animation:float-c 6s ease-in-out infinite; }
+.float-card:nth-child(4) { right:50px; bottom:40px; transform:rotate(-2deg); animation:float-d 5.2s ease-in-out infinite; }
+@keyframes float-a { 0%,100% { transform:rotate(-3deg) translateY(0); } 50% { transform:rotate(-3deg) translateY(-8px); } }
+@keyframes float-b { 0%,100% { transform:rotate(3deg) translateY(0); } 50% { transform:rotate(3deg) translateY(-10px); } }
+@keyframes float-c { 0%,100% { transform:rotate(2deg) translateY(0); } 50% { transform:rotate(2deg) translateY(-6px); } }
+@keyframes float-d { 0%,100% { transform:rotate(-2deg) translateY(0); } 50% { transform:rotate(-2deg) translateY(-9px); } }
+.float-line {
+  position:absolute; left:22%; right:22%; top:50%; height:1px;
+  background:linear-gradient(90deg,transparent,var(--yellow),transparent); opacity:.55;
+}
+.float-dot {
+  position:absolute; left:50%; top:50%; width:13px; height:13px; border-radius:50%;
+  background:var(--yellow); box-shadow:0 0 28px rgba(254,233,53,.8);
+  transform:translate(-50%,-50%); animation:dot-pulse 2s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  0%,100% { transform:translate(-50%,-50%) scale(1); box-shadow:0 0 28px rgba(254,233,53,.8); }
+  50% { transform:translate(-50%,-50%) scale(1.3); box-shadow:0 0 40px rgba(254,233,53,1); }
+}
+
+/* ===== Toast ===== */
+.toast {
+  position:fixed; bottom:80px; left:50%; transform:translateX(-50%) translateY(20px);
+  padding:12px 24px; border-radius:999px; background:rgba(254,233,53,.95); color:#111314;
+  font-size:14px; font-weight:700; z-index:200; opacity:0; pointer-events:none;
+  transition:opacity .25s ease, transform .25s var(--ease-out);
+  box-shadow:0 12px 40px rgba(254,233,53,.25);
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+footer { margin-top:24px; color:var(--muted); text-align:center; font-size:13px; }
+
+/* ===== Responsive: Tablet ===== */
+@media (max-width:1020px) {
+  body { overflow:auto; }
+  .page { position:relative; min-height:auto; opacity:1; transform:none; pointer-events:auto; padding:76px 0 48px; }
+  .page .stagger { opacity:1; transform:none; }
+  .deck { height:auto; overflow:visible; }
+  .nav-links { display:none; }
+  .nav-toggle { display:block; }
+  .dots,.deck-controls,.progress,.scroll-controls { display:none; }
+  .page-grid,.method-layout,.lab-layout,.contact-card { grid-template-columns:1fr; }
+  .timeline { grid-template-columns:1fr 1fr; }
+  .mini-grid,.agent-list { grid-template-columns:1fr; }
+  .bottom-pager { display:none; }
+  .agent-flow-line { grid-template-columns:1fr 1fr; }
+  .agent-flow-line::before,.agent-flow-line::after { display:none; }
+  .drawer-panel { width:100%; }
+}
+
+/* ===== Responsive: Mobile ===== */
+@media (max-width:640px) {
+  .wrap { width:min(100% - 28px,1180px); }
+  h1 { font-size:clamp(56px,18vw,100px); }
+  h2 { font-size:clamp(36px,8vw,46px); }
+  .project-card { flex:0 0 min(340px,88vw); min-height:auto; padding:22px; }
+  .drawer-header { padding:20px 22px 14px; }
+  .drawer-body { padding:0 22px 28px; }
+  .drawer-body h2 { font-size:28px; }
+  .lab-card,.contact-card { padding:22px; }
+  .time-card { min-height:auto; padding:20px; }
+  .method-main { min-height:auto; padding:26px; }
+  .method-mini { min-height:auto; padding:20px; }
+  .native-grid { grid-template-columns:1fr; }
+  .agent-flow-line { grid-template-columns:1fr; gap:10px; }
+  .timeline { grid-template-columns:1fr; }
+  .floating-board,.portrait-stage { min-height:260px; }
+  .signature { font-size:clamp(28px,6vw,42px); }
+  .ability-grid { grid-template-columns:1fr; }
+}
+
+/* ===== Print ===== */
+@media print {
+  body { background:#fff; color:#222; overflow:visible; }
+  body::before { display:none; }
+  .nav,.dots,.deck-controls,.progress,.bottom-pager,.scroll-controls,.toast,.nav-toggle,.mobile-menu { display:none !important; }
+  .deck { height:auto; overflow:visible; }
+  .page { position:relative; opacity:1; transform:none; pointer-events:auto; padding:32px 0; break-inside:avoid; }
+  .page .stagger { opacity:1; transform:none; }
+  .card,.project-card,.lab-card,.time-card,.contact-card { box-shadow:none; border:1px solid #ddd; background:#fff; }
+  .kicker,.chip.hot,.method-mini b,.time-card b,.agent-item b,.native-item b,.signature,.corner-plus { color:#b8860b; }
+  h1,h2,h3,.brand,.identity { color:#222; }
+  p,.lead,.desc,.mini p,.agent-item span,.contact-list,footer { color:#555; }
+  .drawer { display:none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#">Lenson Li｜李扬</a>
+    <div class="nav-links" id="navLinks"></div>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu"></div>
+
+<div class="dots" id="dots"></div>
+
+<main class="deck">
+  <!-- Page 1: Studio -->
+  <section class="page active" id="studio">
+    <div class="wrap">
+      <div class="stagger"><div class="kicker">Studio｜首页</div></div>
+      <div class="stagger"><div class="signature">Lenson</div></div>
+      <div class="stagger"><h1>Lenson<span>Li</span></h1></div>
+      <div class="page-grid stagger">
+        <div class="identity">
+          Brand Project Editor｜品牌项目编辑者<br>
+          AI Workflow Builder｜AI工作流构建者<br>
+          OPC Explorer｜一人公司实验者
+          <small>Shanghai · Personal Brand Archive｜上海 · 个人品牌档案</small>
+        </div>
+        <div>
+          <p class="lead">我正在把 <b>品牌项目经验、内容策划能力和 AI Agent 工作流</b>，转化为可体验、可迭代、可持续生长的个人作品系统。</p>
+          <div class="actions">
+            <button class="pill primary" onclick="nextPage()">下一页：查看方法</button>
+            <button class="pill" onclick="goToPage(2)">浏览项目</button>
+            <button class="pill" onclick="copyEmail()">复制邮箱</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 2: Method -->
+  <section class="page" id="method">
+    <div class="wrap">
+      <div class="stagger"><div class="kicker">Method｜方法</div></div>
+      <div class="stagger"><h2>我如何组织一个品牌项目。</h2></div>
+      <div class="stagger"><p class="desc">这不是"会活动策划、会供应商管理"的普通能力清单，而是我在复杂项目里反复使用的判断方式。</p></div>
+      <div class="method-layout stagger">
+        <div class="card method-main">
+          <h3>把资源、场景、内容和合作方，重新编排成一个可体验的项目。</h3>
+          <p>我更关注一个项目如何被看见、被理解、被参与、被复盘。品牌工作不只是把物料做出来，而是把看似零散的业务信息、客户合作、线下场景和传播内容，整理成有节奏、有证据、有交付标准的整体。</p>
+        </div>
+        <div class="method-stack">
+          <div class="card method-mini"><b>01</b><h3>Resource to Story｜资源转故事</h3><p>把业务能力、客户资源、技术场景转化为外部能理解的品牌内容。</p></div>
+          <div class="card method-mini"><b>02</b><h3>Scene to Experience｜场景转体验</h3><p>把线下空间、用户参与和互动机制组织成可体验的传播路径。</p></div>
+          <div class="card method-mini"><b>03</b><h3>Work to System｜经验转系统</h3><p>把内容、视觉、复盘和 AI Agent 协作沉淀成可复用工作流。</p></div>
+        </div>
+      </div>
+      <div class="icon-strip stagger">
+        <div class="icon-mark">◌</div>
+        <div class="icon-mark">◇</div>
+        <div class="icon-mark">⌁</div>
+        <div class="icon-mark">✦</div>
+        <div class="icon-mark">●</div>
+      </div>
+      <div class="actions stagger"><button class="pill primary" onclick="nextPage()">下一页：看项目</button></div>
+    </div>
+  </section>
+
+  <!-- Page 3: Projects -->
+  <section class="page" id="projects">
+    <div class="wrap">
+      <div class="projects-head stagger">
+        <div>
+          <div class="kicker">Projects｜项目</div>
+          <h2>我做过什么。</h2>
+          <p class="desc">项目不是履历条目，而是能力证据。点击卡片查看项目详情。</p>
+        </div>
+        <div class="scroll-controls">
+          <button class="arrow" onclick="scrollRail(-1)">‹</button>
+          <button class="arrow" onclick="scrollRail(1)">›</button>
+        </div>
+      </div>
+      <div class="rail stagger" id="projectRail"></div>
+      <div class="actions stagger"><button class="pill primary" onclick="nextPage()">下一页：看我正在做什么</button></div>
+    </div>
+  </section>
+
+  <!-- Page 4: Lab -->
+  <section class="page" id="lab">
+    <div class="wrap">
+      <div class="stagger"><div class="kicker">Lab｜实验室</div></div>
+      <div class="stagger"><h2>我正在创造什么。</h2></div>
+      <div class="stagger"><p class="desc">这里展示我的 AI Agent / 程序式开发 / OPC 一人公司方向实验。它不是简历补充，而是正在建设的个人作品资产。</p></div>
+      <div class="lab-layout stagger">
+        <div class="lab-card">
+          <span class="chip hot">Building · Prototype｜建设中 · 原型阶段</span>
+          <h3>Workplace Reset Lab</h3>
+          <p>一个正在开发中的职场情绪韧性互动训练网站，面向处在高压、否定、操控感较强或情绪消耗型工作关系中的职场人。</p>
+          <p style="margin-top:10px;">它通过情境模拟、对话选择、反馈复盘和行动建议，帮助用户识别不健康沟通模式，稳定情绪边界，不轻易把外部否定内化为"我不行"。</p>
+          <div class="status-row">
+            <span class="status">互动网站</span><span class="status">AI Agent工作流</span><span class="status">职场训练</span><span class="status">情绪韧性</span>
+          </div>
+          <div class="agent-list">
+            <div class="agent-item"><b>Scenario Agent</b><span>拆解真实职场情境，生成互动关卡。</span></div>
+            <div class="agent-item"><b>Dialogue Agent</b><span>设计领导、用户和旁白的对话分支。</span></div>
+            <div class="agent-item"><b>Feedback Agent</b><span>根据选择生成复盘和行动建议。</span></div>
+            <div class="agent-item"><b>Page Agent</b><span>辅助生成页面原型和交互逻辑。</span></div>
+          </div>
+        </div>
+
+        <div class="card product-shot lab-native-card">
+          <div>
+            <span class="chip hot">Agent Map｜Agent协作图</span>
+            <h3>Human Judgement × Agent Execution</h3>
+            <p>AI 不作为独立展示重点，而是被放进具体产品开发过程：人负责判断、取舍和边界，Agent 负责拆解、生成、复盘与原型推进。</p>
+          </div>
+          <div class="agent-flow-board">
+            <div class="agent-flow-line">
+              <div class="agent-node"><div class="circle">S</div><b>Scenario</b><span>情境拆解</span></div>
+              <div class="agent-node"><div class="circle">D</div><b>Dialogue</b><span>对话分支</span></div>
+              <div class="agent-node"><div class="circle">F</div><b>Feedback</b><span>反馈复盘</span></div>
+              <div class="agent-node"><div class="circle">P</div><b>Page</b><span>页面原型</span></div>
+            </div>
+          </div>
+          <div class="native-grid">
+            <div class="native-item"><b>01</b><span>情境模拟</span></div>
+            <div class="native-item"><b>02</b><span>对话选择</span></div>
+            <div class="native-item"><b>03</b><span>反馈复盘</span></div>
+            <div class="native-item"><b>04</b><span>边界提醒</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="actions stagger"><button class="pill primary" onclick="nextPage()">下一页：看经历</button></div>
+    </div>
+  </section>
+
+  <!-- Page 5: Archive -->
+  <section class="page" id="archive">
+    <div class="wrap">
+      <div class="stagger"><div class="kicker">Archive｜经历</div></div>
+      <div class="stagger"><h2>我的能力从哪里来。</h2></div>
+      <div class="stagger"><p class="desc">经历只作为可信来源，不抢占主叙事。它服务于前面的能力、项目和正在建设的作品。</p></div>
+      <div class="timeline stagger">
+        <div class="time-card">
+          <b>2022.08 - 至今</b>
+          <h3>万纬物流</h3>
+          <p>品牌经理</p>
+          <p class="company-desc">万科旗下物流地产平台，负责品牌传播、重点活动、客户联合营销及品牌资产建设。</p>
+        </div>
+        <div class="time-card">
+          <b>2021.05 - 2022.07</b>
+          <h3>达也文化传播</h3>
+          <p>项目经理</p>
+          <p class="company-desc">品牌传播与活动执行公司，统筹客户项目、创意落地与供应商管理。</p>
+        </div>
+        <div class="time-card">
+          <b>2018.08 - 2021.04</b>
+          <h3>矩阵互动科技</h3>
+          <p>策划 & 项目负责人</p>
+          <p class="company-desc">数字营销与互动技术公司，负责品牌策划、H5 开发与视频内容项目。</p>
+        </div>
+        <div class="time-card">
+          <b>2016.02 - 2018.07</b>
+          <h3>六祖文化传播</h3>
+          <p>新媒体策划</p>
+          <p class="company-desc">文化传播公司，负责新媒体运营、内容策划与客户沟通。</p>
+        </div>
+      </div>
+      <div class="actions stagger"><button class="pill primary" onclick="nextPage()">下一页：联系我</button></div>
+    </div>
+  </section>
+
+  <!-- Page 6: Contact -->
+  <section class="page" id="contact">
+    <div class="wrap">
+      <div class="contact-card stagger">
+        <div>
+          <div class="kicker">Contact｜联系</div>
+          <h2>Keep in touch.</h2>
+          <p style="margin-top:16px;">这个网站会继续更新我的项目、AI Agent 实验和 OPC 一人公司方向探索。它不是终版简历，而是一个持续生长的个人阵地。</p>
+          <div class="contact-list" style="margin-top:24px;">
+            <span><b>邮箱：</b><a href="mailto:llenson0513@163.com">llenson0513@163.com</a></span>
+            <span><b>手机：</b>18301910000</span>
+            <span><b>所在城市：</b>上海</span>
+          </div>
+          <div class="actions">
+            <button class="pill primary" onclick="copyEmail()">复制邮箱</button>
+            <button class="pill" onclick="goToPage(0)">回到首页</button>
+          </div>
+        </div>
+        <div class="qr">微信二维码待补充</div>
+      </div>
+      <footer>© 2025 Lenson Li · Personal Brand Studio｜个人品牌工作室</footer>
+    </div>
+  </section>
+</main>
+
+<!-- Progress -->
+<div class="progress">
+  <span id="pageCount">01 / 06</span>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<!-- Bottom Pager -->
+<div class="bottom-pager" id="bottomPager"></div>
+
+<!-- Deck Controls -->
+<div class="deck-controls">
+  <button class="control" onclick="prevPage()" aria-label="上一页">‹</button>
+  <button class="control" onclick="nextPage()" aria-label="下一页">›</button>
+</div>
+
+<!-- Drawer -->
+<div class="drawer" id="drawer">
+  <div class="drawer-bg" onclick="closeDrawer()"></div>
+  <div class="drawer-panel">
+    <div class="drawer-header">
+      <div class="drawer-head">
+        <span class="chip" id="drawerChip">Case</span>
+        <button class="close" onclick="closeDrawer()" aria-label="关闭">×</button>
+      </div>
+    </div>
+    <div class="drawer-body">
+      <h2 id="drawerTitle"></h2>
+      <div class="drawer-tags" id="drawerTags"></div>
+
+      <div class="drawer-section">
+        <div class="drawer-section-label">项目概述</div>
+        <p id="drawerDesc"></p>
+      </div>
+
+      <div class="drawer-section">
+        <div class="drawer-section-label">我的角色</div>
+        <p id="drawerRole"></p>
+      </div>
+
+      <div class="drawer-section">
+        <div class="drawer-section-label">项目证明的能力</div>
+        <ul class="drawer-proof-list" id="drawerProof"></ul>
+      </div>
+
+      <div class="drawer-section">
+        <div class="drawer-section-label">成果数据</div>
+        <div class="drawer-data-box">
+          <p id="drawerData"></p>
+        </div>
+      </div>
+
+      <div class="drawer-section">
+        <div class="drawer-image-placeholder">项目图片 / 媒体报道截图待补充</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+const email = "llenson0513@163.com";
+const pages = [
+  ["Studio｜首页", "studio"],
+  ["Method｜方法", "method"],
+  ["Projects｜项目", "projects"],
+  ["Lab｜实验室", "lab"],
+  ["Archive｜经历", "archive"],
+  ["Contact｜联系", "contact"]
+];
+
+const projects = [
+  {
+    id:"kiwi", feature:true, chip:"ToC转型代表案例", title:"佳沛×万纬\n\"营养安检站\"",
+    summary:"将物流机器人从配送工具转化为消费品牌互动媒介，结合地铁快闪、AI语音互动、奇异果兑换、社交打卡与媒体传播。",
+    tags:["消费品牌","地铁快闪","机器人互动","社交传播"],
+    value:"多方统筹、创意落地、传播内容与结案复盘。", proofShort:"跨界合作、体验活动、消费场景转译。",
+    desc:"项目围绕佳沛营养健康主张，将万纬物流机器人从配送工具转化为品牌互动媒介，结合线下快闪、AI语音互动、奇异果兑换、社交打卡和媒体传播，形成城市公共空间中的消费品牌体验项目。",
+    role:"负责或深度参与项目统筹、创意落地、传播内容、现场执行、媒体协同和结案复盘等工作，协调佳沛、深圳地铁、内部团队、活动公司、媒体及现场执行团队等多方资源。",
+    proof:["跨界品牌合作","线下体验活动","消费场景转译","多方协同","用户互动机制设计"],
+    data:"线下曝光【待补充】、线上触达【待补充】、全网报道【待补充】、社交平台触达【待补充】、互动量【待补充】。"
+  },
+  {
+    id:"robot", chip:"科技场景传播", title:"深圳轨道交通\n机器人配送创新测试",
+    summary:"将技术测试转化为公众可理解的创新传播事件，完成场景展示、媒体接待、拍摄素材和现场流程管理。",
+    tags:["城市空间","科技内容","媒体传播"],
+    value:"把\"技术验证\"变成\"传播事件\"。", proofShort:"技术转译、公共场景传播、多方协同。",
+    desc:"将技术测试转化为公众可理解的创新传播事件，协同深铁、万科、万纬技术团队、站点商户、媒体与供应商，完成测试场景展示、机器人形象呈现、拍摄素材、传播内容和现场流程管理。",
+    role:"负责或深度参与项目传播内容、现场流程、媒体接待、拍摄素材、机器人形象呈现和现场安全管控等工作。",
+    proof:["科技内容转译","公共场景传播","多方协同推进","创新项目传播包装"],
+    data:"媒体报道【待补充】、传播曝光【待补充】、视频播放量【待补充】。"
+  },
+  {
+    id:"launch", chip:"产品发布", title:"\"万店配\"统仓共配\n武汉、南京发布会",
+    summary:"将内部运营能力包装为可对外沟通的市场化产品价值，完成发布逻辑、领导材料、视觉物料和现场执行。",
+    tags:["产品发布","双城落地","业务包装"],
+    value:"产品价值表达与发布流程统筹。", proofShort:"产品传播、发布会策划、跨区域复制。",
+    desc:"将公司内部运营能力包装成可对外沟通的市场化产品价值，负责活动主题、流程设计、领导材料、产品介绍、客户案例展示、嘉宾邀约、视觉物料、媒体传播和现场执行。",
+    role:"负责或深度参与两场发布会的项目统筹、发布逻辑、内容包装、视觉物料、嘉宾流程和现场执行工作。",
+    proof:["产品传播","发布会策划","业务价值表达","跨区域项目复制"],
+    data:"参会人数【待补充】、参与客户及合作伙伴【待补充】、媒体报道【待补充】。"
+  },
+  {
+    id:"lingang", chip:"品牌体验场景", title:"上海奉贤临港\n鲜果运营中心开业",
+    summary:"将园区开业从仪式动作转化为客户、合作伙伴和媒体可体验的品牌场景。",
+    tags:["园区开业","参观动线","能力展示"],
+    value:"活动主题、参观动线、品牌展示与传播物料。", proofShort:"空间叙事、客户体验、场景搭建。",
+    desc:"将园区开业从单纯仪式动作，转化为面向客户、合作伙伴和媒体的品牌体验场景。围绕鲜果冷链、加工包装、客户合作与自动化能力，设计活动主题、参观动线、品牌展示、嘉宾接待和传播物料。",
+    role:"负责或深度参与活动主题策划、流程设计、嘉宾沟通、参观动线、品牌展示、传播物料和现场执行。",
+    proof:["线下空间叙事","客户体验设计","品牌场景搭建","活动流程统筹"],
+    data:"现场参会人数【待补充】、客户及合作伙伴数量【待补充】、媒体报道【待补充】。"
+  },
+  {
+    id:"coke", chip:"快消品牌项目", title:"太古可口可乐\n\"消碳合伙人\"",
+    summary:"参与CSR项目策划与传播执行，负责内容统筹、外宣资料、媒体沟通和现场报道协调。",
+    tags:["快消品牌","ESG传播","媒体协同"],
+    value:"参与项目策划、传播执行、媒体沟通及现场支持。", proofShort:"快消客户服务、内容整合、媒体传播。",
+    desc:"参与太古可口可乐CSR项目策划与执行，负责活动部分内容统筹、外宣资料收集、作品资源整合、媒体沟通及现场采访报道协调。",
+    role:"参与项目策划、传播执行、媒体沟通及现场支持。",
+    proof:["快消品牌项目服务","ESG传播","媒体协同","活动执行与内容整合"],
+    data:"CCTV-2、CCTV-4、CGTN、哈佛商业评论、财经网等媒体报道，累计触达人次1516.9万。"
+  },
+  {
+    id:"wantwant", chip:"跨界联名", title:"世茂集团×旺旺\n跨界合作项目",
+    summary:"15天内统筹视频、H5及线上传播物料，协调6—8名团队成员完成创意、设计、技术和执行。",
+    tags:["跨界联名","H5","视频传播"],
+    value:"项目统筹、内容出品管理、团队排期和客户沟通。", proofShort:"快节奏项目统筹、内容出品管理。",
+    desc:"在15天内统筹完成视频、H5及线上传播物料，协调6—8名团队成员推进创意、设计、技术和执行，项目在全国400多个世茂案场播放，并获得甲方认可。",
+    role:"负责项目统筹、内容出品管理、团队排期和客户沟通。",
+    proof:["跨界联名传播","快节奏项目统筹","内容出品管理","客户服务"],
+    data:"上线半小时视频浏览量1万+，全国400多个案场同步播放。"
+  }
+];
+
+let current = 0;
+let prevIndex = -1;
+
+/* ===== Toast ===== */
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2200);
+}
+
+/* ===== Navigation Init ===== */
+function initNav() {
+  const navHTML = pages.map((p,i) =>
+    `<button onclick="goToPage(${i})">${p[0]}</button>`
+  ).join("");
+  document.getElementById("navLinks").innerHTML = navHTML;
+  document.getElementById("dots").innerHTML = pages.map((p,i) =>
+    `<button class="dot" onclick="goToPage(${i})" title="${p[0]}"></button>`
+  ).join("");
+  const pager = document.getElementById("bottomPager");
+  if (pager) {
+    pager.innerHTML = `<span class="pager-label">PREV / NEXT</span>` +
+      pages.map((p,i) =>
+        `<button class="pager-dot" onclick="goToPage(${i})" title="${p[0]}"></button>`
+      ).join("");
+  }
+  const mm = document.getElementById("mobileMenu");
+  mm.innerHTML = pages.map((p,i) =>
+    `<button onclick="goToPage(${i});closeMobileMenu()">${p[0]}</button>`
+  ).join("");
+}
+
+/* ===== Mobile Menu ===== */
+document.getElementById("navToggle").addEventListener("click", () => {
+  document.getElementById("mobileMenu").classList.toggle("active");
+});
+function closeMobileMenu() {
+  document.getElementById("mobileMenu").classList.remove("active");
+}
+
+/* ===== Projects Init ===== */
+function initProjects() {
+  const rail = document.getElementById("projectRail");
+  rail.innerHTML = projects.map(p => `
+    <article class="project-card ${p.feature ? "feature" : ""}" onclick="openDrawer('${p.id}')">
+      <div>
+        <span class="chip ${p.feature ? "hot" : ""}">${p.chip}</span>
+        <h3>${p.title.replace(/\n/g,"<br>")}</h3>
+        <p>${p.summary}</p>
+        <div class="meta">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
+      </div>
+      <div class="mini-grid">
+        <div class="mini"><b>我的价值</b><p>${p.value}</p></div>
+        <div class="mini"><b>证明能力</b><p>${p.proofShort}</p></div>
+      </div>
+      <div class="corner-plus">+</div>
+    </article>
+  `).join("");
+}
+
+/* ===== Page Navigation ===== */
+function goToPage(index) {
+  if (index < 0 || index >= pages.length || index === current) return;
+  const direction = index > current ? "down" : "up";
+  prevIndex = current;
+  current = index;
+
+  const allPages = document.querySelectorAll(".page");
+  allPages.forEach((el, i) => {
+    el.classList.remove("active", "exit-up");
+    if (i === prevIndex && direction === "down") {
+      el.classList.add("exit-up");
+    }
+  });
+
+  requestAnimationFrame(() => {
+    allPages[current].classList.add("active");
+  });
+
+  document.querySelectorAll(".nav-links button").forEach((el,i) =>
+    el.classList.toggle("active", i === current)
+  );
+  document.querySelectorAll(".dot").forEach((el,i) =>
+    el.classList.toggle("active", i === current)
+  );
+  document.querySelectorAll(".pager-dot").forEach((el,i) =>
+    el.classList.toggle("active", i === current)
+  );
+  document.getElementById("pageCount").textContent =
+    `${String(current+1).padStart(2,"0")} / ${String(pages.length).padStart(2,"0")}`;
+  document.getElementById("progressFill").style.width =
+    `${((current+1)/pages.length)*100}%`;
+}
+function nextPage() { goToPage(current + 1); }
+function prevPage() { goToPage(current - 1); }
+function scrollRail(dir) {
+  document.getElementById("projectRail").scrollBy({ left:dir*460, behavior:"smooth" });
+}
+
+/* ===== Email ===== */
+function copyEmail() {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(email).then(() => showToast("邮箱已复制：" + email));
+  } else {
+    showToast("邮箱：" + email);
+  }
+}
+
+/* ===== Drawer ===== */
+function openDrawer(id) {
+  const p = projects.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById("drawerChip").textContent = p.chip;
+  document.getElementById("drawerTitle").textContent = p.title.replace(/\n/g, " ");
+  document.getElementById("drawerTags").innerHTML =
+    p.tags.map(t => `<span class="status">${t}</span>`).join("");
+  document.getElementById("drawerDesc").textContent = p.desc;
+  document.getElementById("drawerRole").textContent = p.role;
+  document.getElementById("drawerProof").innerHTML =
+    p.proof.map(x => `<li>${x}</li>`).join("");
+  document.getElementById("drawerData").textContent = p.data;
+  document.getElementById("drawer").classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+function closeDrawer() {
+  document.getElementById("drawer").classList.remove("active");
+  if (window.innerWidth <= 1020) document.body.style.overflow = "auto";
+}
+
+/* ===== Keyboard ===== */
+window.addEventListener("keydown", e => {
+  if (document.getElementById("drawer").classList.contains("active")) {
+    if (e.key === "Escape") closeDrawer();
+    return;
+  }
+  if (e.key === "ArrowDown" || e.key === "ArrowRight" || e.key === " ") {
+    e.preventDefault(); nextPage();
+  }
+  if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+    e.preventDefault(); prevPage();
+  }
+  if (e.key === "Home") { e.preventDefault(); goToPage(0); }
+  if (e.key === "End") { e.preventDefault(); goToPage(pages.length - 1); }
+});
+
+/* ===== Wheel ===== */
+let wheelLock = false;
+window.addEventListener("wheel", e => {
+  if (window.innerWidth <= 1020) return;
+  if (document.getElementById("drawer").classList.contains("active")) return;
+  if (Math.abs(e.deltaY) < 30 || wheelLock) return;
+  wheelLock = true;
+  e.deltaY > 0 ? nextPage() : prevPage();
+  setTimeout(() => wheelLock = false, 720);
+}, { passive:true });
+
+/* ===== Touch Swipe (mobile deck navigation) ===== */
+let touchStartY = 0;
+let touchStartX = 0;
+let touchStartTime = 0;
+
+window.addEventListener("touchstart", e => {
+  if (document.getElementById("drawer").classList.contains("active")) return;
+  touchStartY = e.touches[0].clientY;
+  touchStartX = e.touches[0].clientX;
+  touchStartTime = Date.now();
+}, { passive:true });
+
+window.addEventListener("touchend", e => {
+  if (window.innerWidth > 1020) return;
+  if (document.getElementById("drawer").classList.contains("active")) return;
+  const dy = touchStartY - e.changedTouches[0].clientY;
+  const dx = touchStartX - e.changedTouches[0].clientX;
+  const dt = Date.now() - touchStartTime;
+  if (Math.abs(dy) > 50 && Math.abs(dy) > Math.abs(dx) * 1.2 && dt < 600) {
+    dy > 0 ? nextPage() : prevPage();
+  }
+}, { passive:true });
+
+/* ===== Init ===== */
+initNav();
+initProjects();
+goToPage(0);
+</script>
+</body>
+</html>
